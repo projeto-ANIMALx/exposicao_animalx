@@ -1,0 +1,280 @@
+/* =========================================
+   0. IMPORTAÇÃO DA FONTE NOHEMI (Se tiveres os ficheiros locais na pasta)
+   (Se a fonte já estiver instalada no computador da exposição, ele usa-a diretamente!)
+========================================= */
+@font-face {
+    font-family: 'Nohemi';
+    src: local('Nohemi Light'), local('Nohemi-Light'), url('fonts/Nohemi-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Nohemi';
+    src: local('Nohemi Regular'), local('Nohemi-Regular'), url('fonts/Nohemi-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Nohemi';
+    src: local('Nohemi SemiBold'), local('Nohemi-SemiBold'), url('fonts/Nohemi-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Nohemi';
+    src: local('Nohemi Bold'), local('Nohemi-Bold'), url('fonts/Nohemi-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* =========================================
+   1. ESTILOS GERAIS E RESET (MODO QUIOSQUE)
+========================================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+}
+
+body, html {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #6c75b7; /* Roxo/azul oficial do projeto */
+    font-family: 'Nohemi', sans-serif;
+    color: #000000;
+}
+
+/* =========================================
+   2. ECRÃ DO MENU PRINCIPAL (PROTÓTIPO)
+========================================= */
+#menu-screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 50px 90px;
+    z-index: 1;
+}
+
+/* Pegadas decorativas em pano de fundo */
+.footprints-bg {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 1920px;
+    height: auto;
+    pointer-events: none; /* Garante que não bloqueia os cliques nos círculos */
+    z-index: -1;
+}
+
+/* CABEÇALHO: Títulos à esquerda + Logos à direita */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    z-index: 2;
+}
+
+.titles h1 {
+    font-size: 46px;
+    color: #000000;
+    margin-bottom: 16px;
+    line-height: 1.15;
+}
+
+.titles .title-bold {
+    font-weight: 700; /* Negrito para "Animais de Lisboa:" */
+}
+
+.titles .title-light {
+    font-weight: 400; /* Peso regular/leve para "Outra história da cidade" */
+    font-size: 36px;
+}
+
+.subtitle-desc {
+    font-size: 20px;
+    font-weight: 400;
+    color: #000000;
+    line-height: 1.4;
+    max-width: 600px;
+}
+
+/* Contentor dos 2 Logótipos no topo direito */
+.logos-container {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
+.logo-museu {
+    height: 85px; /* Ajusta conforme a proporção do teu ficheiro */
+    width: auto;
+    object-fit: contain;
+}
+
+.logo-animalx {
+    height: 95px; /* Ajusta conforme a proporção do teu ficheiro */
+    width: auto;
+    object-fit: contain;
+}
+
+/* =========================================
+   3. ÁREA CENTRAL: CÍRCULOS COM IMAGEM + TEXTO
+========================================= */
+.choices-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 220px; /* Espaço horizontal entre as duas opções */
+    flex-grow: 1;
+    z-index: 2;
+    margin-top: 10px;
+}
+
+.choice-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.25s ease;
+}
+
+/* Efeito interativo ao tocar ou passar o rato */
+.choice-item:hover, .choice-item:active {
+    transform: scale(1.04);
+}
+
+/* Moldura circular com borda gerada pelo CSS (sempre igual nos dois!) */
+.circle-frame {
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    background-color: #ced6db;
+    border: 22px solid #ced6db; /* Define uma espessura de borda idêntica para ambos */
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Recorta tudo num círculo perfeito */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.choice-item:hover .circle-frame {
+    border-color: #dce3e8;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* A imagem redonda lá dentro */
+.circle-frame img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+}
+
+/* 1. Ajuste da imagem do Mapa Digital (esconde o aro antigo e centra) */
+.choices-container .choice-item:first-child .circle-frame img {
+    transform: scale(1.15) translate(5px, 3px);
+}
+
+/* 2. Ajuste da imagem do Tag ANIMALx (esconde o aro antigo mais grosso para usar só o do CSS) */
+.choices-container .choice-item:last-child .circle-frame img {
+    transform: scale(1.18);
+}
+
+/* Título por baixo de cada círculo ("Mapa Digital" / "Tag ANIMALx") */
+.choice-label {
+    margin-top: 28px;
+    font-family: 'Nohemi', sans-serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: #000000;
+    text-align: center;
+}
+
+/* =========================================
+   4. CONTENTOR DAS APLICAÇÕES E BOTÃO VOLTAR
+========================================= */
+#app-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #6c75b7;
+    z-index: 100;
+}
+
+#app-frame {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* =========================================
+   4. BOTÃO DE VOLTAR ADAPTÁVEL (MAPA vs TAG)
+========================================= */
+#back-btn {
+    position: fixed;
+    z-index: 200;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Nohemi', sans-serif;
+    transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* POSIÇÃO 1: No MAPA (Encaixado no espaço branco entre a descrição e o logo Animalx) */
+#back-btn.pos-mapa {
+    top:25px;                 /* Distância a contar do topo do ecrã */
+    left: 78%;                 /* Empurra o botão para a direita do texto da descrição (ao centro era 50%) */
+    transform: translateX(-50%);
+    background-color: #6c75b7;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    border-radius: 50px;
+    padding: 10px 22px;        /* Ligeiramente mais compacto para caber com folga na barra branca */
+    font-size: 15px;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+#back-btn.pos-mapa:hover {
+    background-color: #555d96;
+    transform: translateX(-50%) scale(1.05);
+}
+
+/* POSIÇÃO 2: No TAG ANIMALx (Canto Inferior Esquerdo) */
+#back-btn.pos-tag {
+    bottom: 25px;              /* Prende ao fundo do ecrã */
+    left: 25px;                /* Prende à esquerda do ecrã */
+    top: auto;                 /* Desativa qualquer alinhamento ao topo */
+    background-color: #ede8e9;
+    color: #6c75b7;
+    border: 2px solid #6c75b7;
+    outline: 3px solid #ede8e9;
+    border-radius: 14px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+}
+
+#back-btn.pos-tag:hover {
+    background-color: #ffffff;
+    transform: scale(1.05);
+}

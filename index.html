@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animais de Lisboa - Exposição</title>
+    
+    <!-- Ligação ao ficheiro CSS externo -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- 1. ECRÃ DO MENU INICIAL -->
+    <div id="menu-screen">
+        
+        <!-- Imagem decorativa das pegadas (se tiveres exportado as pegadas como um PNG transparente) -->
+        <!-- Se não tiveres um ficheiro separado para as pegadas, podes comentar ou ajustar o src abaixo -->
+        <img src="animalx_patas.png" class="footprints-bg" alt="">
+
+        <!-- CABEÇALHO -->
+        <header class="header">
+            <div class="titles">
+                <h1>
+                    <span class="title-bold">Animais de Lisboa:</span> 
+                    <span class="title-light">Outra história da cidade</span>
+                </h1>
+                <p class="subtitle-desc">
+                    Breve descrição sobre os recursos que os utilizadores<br>podem explorar.
+                </p>
+            </div>
+            
+            <!-- Logótipos no Canto Superior Direito -->
+            <div class="logos-container">
+                <img src="logo_ml.png" alt="Museu de Lisboa" class="logo-museu">
+                <img src="logo_completo_preto.png" alt="Animalx" class="logo-animalx">
+            </div>
+        </header>
+
+        <!-- ÁREA CENTRAL: AS DUAS FERRAMENTAS -->
+        <main class="choices-container">
+            
+            <!-- Opção 1: Mapa Digital -->
+            <div class="choice-item" onclick="abrirAplicacao('mapa')">
+                <div class="circle-frame">
+                    <img src="mapa.png" alt="Mapa Digital">
+                </div>
+                <span class="choice-label">Mapa Digital</span>
+            </div>
+
+            <!-- Opção 2: Tag ANIMALx -->
+            <div class="choice-item" onclick="abrirAplicacao('tag')">
+                <div class="circle-frame">
+                    <img src="tag.png" alt="Tag ANIMALx">
+                </div>
+                <span class="choice-label">Tag ANIMALx</span>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- 2. ECRÃ DE EXIBIÇÃO (ONDE CARREGA O MAPA OU O TAG ANIMALX) -->
+    <div id="app-container">
+        <button id="back-btn" onclick="voltarAoMenu()">
+            <span>⬅</span> Voltar ao Menu da Exposição
+        </button>
+        <iframe id="app-frame" src="" allow="fullscreen"></iframe>
+    </div>
+
+    <!-- Ligação ao ficheiro JavaScript externo -->
+    <script src="script.js"></script>
+
+</body>
+</html>
